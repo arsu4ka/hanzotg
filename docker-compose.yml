@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres # Set your desired password here
+      POSTGRES_USER: postgres
+      POSTGRES_DB: hanzotg # Added database name
+    ports:
+      - "1221:5432" # Map container port 1221 to host port 1221
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persist data volume
+
+volumes:
+  postgres_data: {}
