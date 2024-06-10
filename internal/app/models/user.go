@@ -4,6 +4,6 @@ import "database/sql"
 
 type User struct {
 	Id       string
-	Username string
+	Username sql.NullString
 	Password sql.NullString
 }

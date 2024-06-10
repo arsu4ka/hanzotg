@@ -3,6 +3,7 @@ package repo
 import (
 	"database/sql"
 	"hanzotg/internal/app/models"
+	"hanzotg/internal/app/utils"
 )
 
 type UserRepo struct {
@@ -17,7 +18,7 @@ func (u *UserRepo) Create(id, username string) error {
 	_, err := u.db.Exec(
 		`INSERT INTO public."users" (id, username, password) VALUES ($1, $2, null)`,
 		id,
-		username,
+		utils.NewNullString(username),
 	)
 	return err
 }
