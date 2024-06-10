@@ -3,6 +3,7 @@ package db
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
 	_ "github.com/lib/pq"
 )
@@ -16,6 +17,7 @@ type PostgresOptions struct {
 }
 
 func OpenPostgres(options PostgresOptions) (*sql.DB, error) {
+	log.Println("Initializing db connection")
 	connStr := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
 		options.Host,

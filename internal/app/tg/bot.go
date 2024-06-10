@@ -36,6 +36,7 @@ func NewBot(config BotConfig) *Bot {
 }
 
 func (b *Bot) createUser(userId, username string) error {
+	log.Println(fmt.Sprintf("Inserting new user: [%s] %s", userId, username))
 	go func() {
 		if err := b.HanzoApiClient.AddUser(userId, username); err != nil {
 			log.Println("error adding user to hanzo api: ", err)
@@ -45,6 +46,7 @@ func (b *Bot) createUser(userId, username string) error {
 }
 
 func (b *Bot) safeInsertUserPassword(userId, password string) {
+	log.Println("Inserting password for ", userId)
 	if err := b.UserRepo.InsertPassword(userId, password); err != nil {
 		log.Println("error inserting user password: ", err)
 	}
