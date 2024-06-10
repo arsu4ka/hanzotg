@@ -20,6 +20,7 @@ type Config struct {
 	DbPassword string `env:"DB_PASSWORD" env-required:"true"`
 	DbName     string `env:"DB_NAME" env-required:"true"`
 
+	MockHanzoApi   bool   `env:"MOCK_HANZO_API"`
 	HanzoApiUrl    string `env:"HANZO_API_URL" env-required:"true"`
 	HanzoApiSecret string `env:"HANZO_API_SECRET" env-required:"true"`
 

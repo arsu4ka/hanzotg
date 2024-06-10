@@ -27,10 +27,16 @@ func main() {
 
 	userRepo := repo.NewUser(postgresDb)
 	verificationMessageRepo := repo.NewVerificationMessage(postgresDb)
-	hanzoApiClient := hanzo.NewApiClient(hanzo.ApiConfig{
-		SecretKey: cfg.HanzoApiSecret,
-		BaseUrl:   cfg.HanzoApiUrl,
-	})
+
+	var hanzoApiClient tg.IHanzoApiClient
+	if cfg.MockHanzoApi {
+		hanzoApiClient = &hanzo.MockApiClient{}
+	} else {
+		hanzoApiClient = hanzo.NewApiClient(hanzo.ApiConfig{
+			SecretKey: cfg.HanzoApiSecret,
+			BaseUrl:   cfg.HanzoApiUrl,
+		})
+	}
 
 	tgBot := tg.NewBot(tg.BotConfig{
 		BotToken: cfg.BotToken,
